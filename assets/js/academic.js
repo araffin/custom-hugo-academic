@@ -576,6 +576,13 @@
     // Live update of day/night mode on system preferences update (no refresh required).
     // Note: since we listen only for *dark* events, we won't detect other scheme changes such as light to no-preference.
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    // Force light them for blog posts
+    if(window.location.pathname.includes("post/")){
+      renderThemeVariation(0);
+      console.log("Force Light Theme for posts");
+    }
+
     darkModeMediaQuery.addListener((e) => {
       if (!canChangeTheme()) {
         // Changing theme variation is not allowed by admin.
